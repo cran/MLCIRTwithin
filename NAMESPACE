@@ -1,0 +1,10 @@
+exportPattern("^[[:alpha:]]+")
+
+# Imported function
+import("MASS")
+import("limSolve")
+import("MultiLCIRT")
+
+# S3methods
+S3method(print, est_multi_poly_within)
+S3method(summary, est_multi_poly_within)
