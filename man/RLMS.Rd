@@ -5,7 +5,7 @@
 
 \description{
 This dataset contains the data about job satisfaction described in:
-Bartolucci, F., Bacci, S., and Gnaldi, M. (2015), Statistical Analysis of Questionnaires: A Unified Approach Based on Stata and R, Chapman and Hall/CRC press}
+Bartolucci, F., Bacci, S., and Gnaldi, M. (2015), Statistical Analysis of Questionnaires: A Unified Approach Based on R and Stata, Chapman and Hall/CRC press}
 
 \usage{data(RLMS)}
 \format{
@@ -28,22 +28,16 @@ Bartolucci, F., Bacci, S., and Gnaldi, M. (2015), Statistical Analysis of Questi
 %}
 
 %\source{
-%%%  ~~ reference to a publication or URL from which the data were obtained ~~
-%% Vedere in Bartolucci e Forcina o da altra parte la fonte originale dei dati Naep
 %}
 
-% \references{
-% Bartolucci, F. and Forcina, A. (2005), Likelihood inference on the underlying structure of IRT models. \emph{Psychometrika},
-% \bold{70}, 31-43. 
-
-% Bartolucci, F. (2007), A class of multidimensional IRT models for testing unidimensionality and clustering items. 
-% \emph{Psychometrika}, \bold{72}, 141-157.
-% }
-% \examples{
-% data(naep)
-% ## maybe str(naep)
-% str(naep)
-% }
+ \references{
+Bartolucci, F., Bacci, S., and Gnaldi, M. (2015), \emph{Statistical Analysis of Questionnaires: A Unified Approach Based on R and Stata}, Chapman and Hall/CRC press
+ }
+ \examples{
+ data(RLMS)
+ ## maybe str(RLMS)
+ str(RLMS)
+ }
 
 \keyword{datasets}
 \keyword{education}

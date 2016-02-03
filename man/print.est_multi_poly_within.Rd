@@ -1,8 +1,8 @@
 \name{print.est_multi_poly_within}
 \alias{print.est_multi_poly_within}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Print the output of est_multi_poly_within object}
-\description{Given the output from est_multi_poly_within, it is written in a readable form}
+\title{Print the call of est_multi_poly_within object}
+\description{Given the output from est_multi_poly_within, the call of it is written}
 \usage{
 	\method{print}{est_multi_poly_within}(x, ...)
 	}

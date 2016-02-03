@@ -4,9 +4,10 @@
 \title{Fit marginal regression models for categorical responses}
 \description{It estimates marginal regression models to datasets consisting of a categorical response and one or more covariates by a Fisher-scoring algorithm; this is an internal function that also works with response variables having a different number of response categories.}
 
-\usage{est_multi_glob_gen(Y, X, model, ind = 1:nrow(Y), be = NULL, Dis = NULL, dis = NULL, 
-                          disp=FALSE, only_sc = FALSE, Int = NULL, der_single = FALSE,
-                          maxit = 10)}
+\usage{est_multi_glob_gen(Y, X, model, ind = 1:nrow(Y), be = NULL,
+                   Dis = NULL, dis = NULL, disp=FALSE,
+                   only_sc = FALSE, Int = NULL, der_single = FALSE,
+                   maxit = 10)}
 
 %- maybe also 'usage' for other objects documented here.
 \arguments{

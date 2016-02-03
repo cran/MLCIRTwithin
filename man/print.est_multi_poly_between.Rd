@@ -1,15 +1,15 @@
-\name{summary.est_multi_poly_within}
-\alias{summary.est_multi_poly_within}
+\name{print.est_multi_poly_between}
+\alias{print.est_multi_poly_between}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Print the output of est_multi_poly_within object}
-\description{Given the output from est_multi_poly_within, it is written in a readable form}
+\title{Print the output of est_multi_poly_between object}
+\description{Given the output from est_multi_poly_between, the call of it is written}
 \usage{
-	\method{summary}{est_multi_poly_within}(object, ...)
+	\method{print}{est_multi_poly_between}(x, ...)
 	}
 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-\item{object}{output from est_multi_poly_within}
+\item{x}{output from est_multi_poly_between}
 \item{...}{further arguments passed to or from other methods}
 }
 
@@ -28,4 +28,3 @@
 %\seealso{
 %%% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
-

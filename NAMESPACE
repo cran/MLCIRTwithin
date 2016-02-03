@@ -4,7 +4,11 @@ exportPattern("^[[:alpha:]]+")
 import("MASS")
 import("limSolve")
 import("MultiLCIRT")
+importFrom("stats", "rnorm", "runif", "sd")
 
 # S3methods
 S3method(print, est_multi_poly_within)
 S3method(summary, est_multi_poly_within)
+S3method(print, est_multi_poly_between)
+S3method(summary, est_multi_poly_between)
+

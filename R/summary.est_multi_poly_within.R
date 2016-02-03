@@ -16,7 +16,11 @@ summary.est_multi_poly_within <-function(object, ...){
     cat("\nClass weights for the 2nd latent variable:\n")
     print(round(out$piv2,4))
     cat("\nConditional response probabilities:\n")
-    print(round(out$Phi,4))    
+    print(round(out$Phi,4))
+    cat("\nEstimated abilities for the 1st latent variable:\n")
+    print(round(out$Th1,4))    
+    cat("\nEstimated abilities for the 2nd latent variable:\n")
+    print(round(out$Th2,4))            
     cat("\n")
 
 }

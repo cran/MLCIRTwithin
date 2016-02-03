@@ -1,15 +1,15 @@
-\name{summary.est_multi_poly_within}
-\alias{summary.est_multi_poly_within}
+\name{summary.est_multi_poly_between}
+\alias{summary.est_multi_poly_between}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Print the output of est_multi_poly_within object}
-\description{Given the output from est_multi_poly_within, it is written in a readable form}
+\title{Print the output of est_multi_poly_between object}
+\description{Given the output from est_multi_poly_between, it is written in a readable form}
 \usage{
-	\method{summary}{est_multi_poly_within}(object, ...)
+	\method{summary}{est_multi_poly_between}(object, ...)
 	}
 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-\item{object}{output from est_multi_poly_within}
+\item{object}{output from est_multi_poly_between}
 \item{...}{further arguments passed to or from other methods}
 }
 
