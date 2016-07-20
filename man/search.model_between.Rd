@@ -7,10 +7,11 @@
 \description{It searches for the global maximum of the log-likelihood of between-item muldimensional models given a vector of possible number of classes to try for.}
 
 \usage{search.model_between(S, yv = rep(1, ns), kv, X = NULL,
-	                        link = c("global","local"), disc = FALSE, difl = FALSE,
-	                        multi = 1:J, fort = FALSE, tol1 = 10^-6, tol2 = 10^-10,
-	                        glob = FALSE, disp = FALSE, output = FALSE,
-	                        out_se = FALSE, nrep = 2)}
+                     link = c("global","local"), disc = FALSE, difl = FALSE,
+                     multi = 1:J, fort = FALSE, tol1 = 10^-6, tol2 = 10^-10,
+                     glob = FALSE, disp = FALSE, output = FALSE,
+                     out_se = FALSE, nrep = 2, Zth=NULL,zth=NULL,
+                     Zbe=NULL, zbe=NULL,Zga=NULL,zga=NULL)}
         
 %- maybe also 'usage' for other objects documented here.
 
@@ -38,6 +39,12 @@
   \item{output}{to return additional outputs (Piv,Pp,lkv)}
   \item{out_se}{to return standard errors}
   \item{nrep}{number of repetitions of each random initialization}
+  \item{Zth}{matrix for the specification of constraints on the support points}  
+  \item{zth}{vector for the specification of constraints on the support points}  
+  \item{Zbe}{matrix for the specification of constraints on the item difficulty parameters}  
+  \item{zbe}{vector for the specification of constraints on the item difficulty parameters}  
+  \item{Zga}{matrix for the specification of constraints on the item discriminating indices}  
+  \item{zga}{vector for the specification of constraints on the item discriminating indices}         
 }
 
 %\details{
@@ -45,13 +52,13 @@
 %}
 
 \value{
+\item{out.single}{output of each single model for each \code{k} in \code{kv}; it is similar to output from est_multi_poly_between, with the addition of values of number of latent classes  (\code{k})  and the sequence of log-likelihoods (\code{lktrace}) for the deterministic start, for each random start, and for the final estimation obtained with  a tolerance level equal to \code{tol2}}	
 \item{aicv}{Akaike Information Criterion index for each \code{k} in \code{kv}}
 \item{bicv}{Bayesian Information Criterion index for each \code{k} in \code{kv}}
 \item{entv}{Entropy index for each \code{k} in \code{kv}}
-\item{errv}{trace of any errors occurred during the estimation process for each \code{k} in \code{kv}}
-\item{lkv}{log-likelihood at convergence of the EM algorithm  for each \code{k} in \code{kv}}
 \item{necv}{NEC index for each \code{k} in \code{kv}}
-\item{out.single}{output of each single model for each \code{k} in \code{kv}; it is similar to output from est_multi_poly_between, with the addition of values of number of latent classes  (\code{k})  and the sequence of log-likelihoods (\code{lktrace}) for the deterministic start, for each random start, and for the final estimation obtained with  a tolerance level equal to \code{tol2}}
+\item{lkv}{log-likelihood at convergence of the EM algorithm  for each \code{k} in \code{kv}}
+\item{errv}{trace of any errors occurred during the estimation process for each \code{k} in \code{kv}}
 }
 
 \references{

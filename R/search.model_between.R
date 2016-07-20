@@ -1,7 +1,8 @@
 search.model_between <- function (S, yv = rep(1, ns), kv, X = NULL, link = c("global","local"),
                                   disc = FALSE, difl = FALSE, multi = 1:J, fort = FALSE, 
                                   tol1 = 10^-6, tol2 = 10^-10, glob = FALSE, disp = FALSE,
-									output = FALSE, out_se = FALSE, nrep = 2){
+                                  output = FALSE, out_se = FALSE, nrep = 2, Zth=NULL,zth=NULL,
+                                  Zbe=NULL,zbe=NULL,Zga=NULL,zga=NULL){
 									
 # preliminaries
 	link = match.arg(link)
@@ -18,8 +19,9 @@ search.model_between <- function (S, yv = rep(1, ns), kv, X = NULL, link = c("gl
 			out[[k]] = try(est_multi_poly(S = S, yv = yv, k = 1,tol=tol2))
        	}else{
 			out[[k]] = try(est_multi_poly_between(S = S, yv = yv, k = k,
-							X = X, start = "deterministic", link = link, disc = disc, difl = difl,
-        	               multi = multi, fort = fort, tol = tol1, glob = glob, disp = disp))
+						   X = X, start = "deterministic", link = link, disc = disc, difl = difl,
+        	               multi = multi, fort = fort, tol = tol1, glob = glob, disp = disp, Zth=Zth,
+        	               zth=zth,Zbe=Zbe,zbe=zbe,Zga=Zga,zga=zga))
 		}
 		if (!inherits(out[[k]], "try-error")){
 			errv[[k]] = FALSE
@@ -46,8 +48,9 @@ search.model_between <- function (S, yv = rep(1, ns), kv, X = NULL, link = c("gl
 				cat("***************************************************************************\n")
 				cat(c(k, h), "\n")
 				outh = try(est_multi_poly_between(S = S, yv = yv, k = k, 
-						    X = X, start = "random", link = link, disc = disc, difl = difl, 
-           	               multi = multi, fort = fort, tol = tol1, glob = glob, disp = disp))
+						   X = X, start = "random", link = link, disc = disc, difl = difl, 
+           	               multi = multi, fort = fort, tol = tol1, glob = glob, disp = disp,
+           	               Zth=Zth,zth=zth,Zbe=Zbe,zbe=zbe,Zga=Zga,zga=zga))
            	    if(!inherits(outh, "try-error")){
 					lktrace = c(lktrace, outh$lk)
 					if (outh$lk > out[[k]]$lk) out[[k]] = outh
@@ -71,8 +74,9 @@ search.model_between <- function (S, yv = rep(1, ns), kv, X = NULL, link = c("gl
           		outh = try(est_multi_poly_between(S = S, yv = yv, k = k, 
            	            X = X, start = "external", link = link, disc = disc, difl = difl, 
            	            multi = multi, fort = fort, tol = tol2, glob = glob, disp = disp,
-           	            output=output,out_se=out_se,piv=out[[k]]$piv,Phi=out[[k]]$Phi,
-           	            gac=out[[k]]$gac,De=out[[k]]$De))
+           	            output=output,out_se=out_se,Phi=out[[k]]$Phi,
+           	            gat=out[[k]]$gat,De=out[[k]]$De,Zth=Zth,
+                        zth=zth,Zbe=Zbe,zbe=zbe,Zga=Zga,zga=zga))
            	    if (!inherits(outh, "try-error")){
 					lktrace = c(lktrace, outh$lk)
           	     	if (outh$lk > out[[k]]$lk) out[[k]] = outh

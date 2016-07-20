@@ -1,7 +1,9 @@
 search.model_within <- function (S, yv = rep(1, ns), kv1, kv2, X = NULL, link = c("global","local"),
-                                  disc = FALSE, difl = FALSE, multi1, multi2, fort = FALSE, 
-                                  tol1 = 10^-6, tol2 = 10^-10, glob = FALSE, disp = FALSE,
-									output = FALSE, out_se = FALSE, nrep = 2){
+                                 disc = FALSE, difl = FALSE, multi1, multi2, fort = FALSE, 
+                                 tol1 = 10^-6, tol2 = 10^-10, glob = FALSE, disp = FALSE,
+								 output = FALSE, out_se = FALSE, nrep = 2, Zth1=NULL, zth1=NULL,
+								 Zth2=NULL, zth2=NULL, Zbe=NULL, zbe=NULL, Zga1=NULL, zga1=NULL,
+								 Zga2=NULL, zga2=NULL){
 									
 # preliminaries
 	link = match.arg(link)
@@ -22,16 +24,20 @@ search.model_within <- function (S, yv = rep(1, ns), kv1, kv2, X = NULL, link = 
 			out[[k]] = try(est_multi_poly(S = S, yv = yv, k = 1,tol=tol2))
        	}else if(k1==1 & k2>1){
 			out[[k]] = try(est_multi_poly_between(S = S, yv = yv, k = k2,
-							X = X, start = "deterministic", link = link, disc = disc, difl = difl,
-        	               multi = multi2, fort = fort, tol = tol1, glob = glob, disp = disp))
+						   X = X, start = "deterministic", link = link, disc = disc, difl = difl,
+        	               multi = multi2, fort = fort, tol = tol1, glob = glob, disp = disp,
+        	               Zth=Zth2, zth=zth2, Zbe=Zbe, zbe=zbe, Zga=Zga2, zga=zga2))
        	}else if(k1>1 & k2==1){
 			out[[k]] = try(est_multi_poly_between(S = S, yv = yv, k = k1,
 							X = X, start = "deterministic", link = link, disc = disc, difl = difl,
-        	               multi = multi1, fort = fort, tol = tol1, glob = glob, disp = disp))
+        	               multi = multi1, fort = fort, tol = tol1, glob = glob, disp = disp,
+        	               Zth=Zth1, zth=zth1, Zbe=Zbe, zbe=zbe, Zga= Zga1, zga= zga1))
        	}else{ 
 			out[[k]] = try(est_multi_poly_within(S = S, yv = yv, k1 = k1, k2 = k2,
-							X = X, start = "deterministic", link = link, disc = disc, difl = difl,
-        	               multi1 = multi1, multi2 = multi2, fort = fort, tol = tol1, glob = glob, disp = disp))
+						   X = X, start = "deterministic", link = link, disc = disc, difl = difl,
+        	               multi1 = multi1, multi2 = multi2, fort = fort, tol = tol1, glob = glob,
+        	               disp = disp, Zth1=Zth1, zth1=zth1, Zth2=Zth2, zth2=zth2, Zbe=Zbe, zbe=zbe,
+        	               Zga1= Zga1, zga1= zga1, Zga2=Zga2, zga2=zga2))
 		}
 		if (!inherits(out[[k]], "try-error")){
 			errv[[k]] = FALSE
@@ -59,16 +65,20 @@ search.model_within <- function (S, yv = rep(1, ns), kv1, kv2, X = NULL, link = 
 				cat(c(k1,k2,h), "\n")
 				if(k1==1 & k2>1){
 					outh = try(est_multi_poly_between(S = S, yv = yv, k = k2,
-							X = X, start = "random", link = link, disc = disc, difl = difl,
-        	               multi = multi2, fort = fort, tol = tol1, glob = glob, disp = disp))
+						   X = X, start = "random", link = link, disc = disc, difl = difl,
+        	               multi = multi2, fort = fort, tol = tol1, glob = glob, disp = disp,
+        	               Zth=Zth2, zth=zth2, Zbe=Zbe, zbe=zbe, Zga=Zga2, zga=zga2))
 	       		}else if(k1>1 & k2==1){
 					outh = try(est_multi_poly_between(S = S, yv = yv, k = k1,
 							X = X, start = "random", link = link, disc = disc, difl = difl,
-        	               multi = multi1, fort = fort, tol = tol1, glob = glob, disp = disp))
+        	               multi = multi1, fort = fort, tol = tol1, glob = glob, disp = disp,
+        	               Zth=Zth1, zth=zth1, Zbe=Zbe, zbe=zbe, Zga= Zga1, zga= zga1))
        			}else{ 
 					outh = try(est_multi_poly_within(S = S, yv = yv, k1 = k1, k2 = k2,
-							X = X, start = "random", link = link, disc = disc, difl = difl,
-        	               multi1 = multi1, multi2 = multi2, fort = fort, tol = tol1, glob = glob, disp = disp))
+						   X = X, start = "random", link = link, disc = disc, difl = difl,
+        	               multi1 = multi1, multi2 = multi2, fort = fort, tol = tol1, glob = glob,
+        	               disp = disp, Zth1=Zth1, zth1=zth1, Zth2=Zth2, zth2=zth2, Zbe=Zbe, zbe=zbe,
+        	               Zga1= Zga1, zga1= zga1, Zga2=Zga2, zga2=zga2))
 				}
            	    if(!inherits(outh, "try-error")){
 					lktrace = c(lktrace, outh$lk)
@@ -93,21 +103,24 @@ search.model_within <- function (S, yv = rep(1, ns), kv1, kv2, X = NULL, link = 
 				if(k1==1 & k2>1){
 					outh = try(est_multi_poly_between(S = S, yv = yv, k = k2,
 							X = X, start = "external", link = link, disc = disc, difl = difl,
-        	               multi = multi2, fort = fort, tol = tol2, glob = glob, disp = disp,
-							output=output,out_se=out_se,piv=out[[k]]$piv,Phi=out[[k]]$Phi,
-							gac=out[[k]]$gac,De=out[[k]]$De))
+        	                multi = multi2, fort = fort, tol = tol2, glob = glob, disp = disp,
+							output=output,out_se=out_se,Phi=out[[k]]$Phi,
+							gat=out[[k]]$gat,De=out[[k]]$De,Zth=Zth2, zth=zth2, Zbe=Zbe, zbe=zbe,
+        	                Zga=Zga2, zga=zga2))
 	       		}else if(k1>1 & k2==1){
 					outh = try(est_multi_poly_between(S = S, yv = yv, k = k1,
 							X = X, start = "external", link = link, disc = disc, difl = difl,
-        	               multi = multi1, fort = fort, tol = tol2, glob = glob, disp = disp,
-        	               output=output,out_se=out_se,piv=out[[k]]$piv,Phi=out[[k]]$Phi,
-							gac=out[[k]]$gac,De=out[[k]]$De))
+        	                multi = multi1, fort = fort, tol = tol2, glob = glob, disp = disp,
+        	                output=output,out_se=out_se,Phi=out[[k]]$Phi,
+							gat=out[[k]]$gat,De=out[[k]]$De,Zth=Zth1, zth=zth1, Zbe=Zbe, zbe=zbe,
+        	               Zga= Zga1, zga= zga1))
        			}else{ 
 					outh = try(est_multi_poly_within(S = S, yv = yv, k1 = k1, k2 = k2,
-							X = X, start = "external", link = link, disc = disc, difl = difl,
+						   X = X, start = "external", link = link, disc = disc, difl = difl,
         	               multi1 = multi1, multi2 = multi2, fort = fort, tol = tol2, glob = glob, disp = disp,
-        	               output=output,out_se=out_se,piv1=out[[k]]$piv1,piv2=out[[k]]$piv2,Phi=out[[k]]$Phi,
-							ga1c=out[[k]]$ga1c,ga2c=out[[k]]$ga2c,De1=out[[k]]$De1,De2=out[[k]]$De2))
+        	               output=output,out_se=out_se,Phi=out[[k]]$Phi, ga1t=out[[k]]$ga1t,ga2t=out[[k]]$ga2t,
+        	               De1=out[[k]]$De1,De2=out[[k]]$De2,Zth1=Zth1, zth1=zth1, Zth2=Zth2, zth2=zth2, Zbe=Zbe, zbe=zbe,
+        	               Zga1= Zga1, zga1= zga1, Zga2=Zga2, zga2=zga2))
 				}
            	    if(!inherits(outh, "try-error")){
 					lktrace = c(lktrace, outh$lk)

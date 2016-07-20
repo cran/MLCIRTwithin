@@ -6,11 +6,13 @@
 
 \description{It searches for the global maximum of the log-likelihood of within-item muldimensional models given a vector of possible number of classes to try for.}
 
-\usage{search.model_within(S, yv = rep(1, ns), kv1, kv2, X = NULL,
-	                        link = c("global","local"), disc = FALSE, difl = FALSE,
-	                        multi1, multi2, fort = FALSE, tol1 = 10^-6, tol2 = 10^-10,
-	                        glob = FALSE, disp = FALSE, output = FALSE,
-	                        out_se = FALSE, nrep = 2)}
+\usage{search.model_within(S, yv = rep(1, ns), kv1, kv2, X = NULL, 
+                    link = c("global","local"), disc = FALSE, difl = FALSE, 
+                    multi1, multi2, fort = FALSE, tol1 = 10^-6, tol2 = 10^-10,
+                    glob = FALSE, disp = FALSE, output = FALSE, out_se = FALSE, 
+                    nrep = 2, Zth1 = NULL, zth1 = NULL, Zth2=NULL, zth2=NULL, 
+                    Zbe=NULL, zbe=NULL, Zga1=NULL, zga1=NULL, Zga2=NULL, 
+                    zga2=NULL)}
         
 %- maybe also 'usage' for other objects documented here.
 
@@ -41,6 +43,16 @@
   \item{output}{to return additional outputs (Piv,Pp,lkv)}
   \item{out_se}{to return standard errors}
   \item{nrep}{number of repetitions of each random initialization}
+  \item{Zth1}{matrix for the specification of constraints on the support points for the 1st latent variable}  
+  \item{zth1}{vector for the specification of constraints on the support points for the 1st latent variable}  
+  \item{Zth2}{matrix for the specification of constraints on the support points for the 2nd latent variable}  
+  \item{zth2}{vector for the specification of constraints on the support points for the 2nd latent variable}  
+  \item{Zbe}{matrix for the specification of constraints on the item difficulty parameters}  
+  \item{zbe}{vector for the specification of constraints on the item difficulty parameters}  
+  \item{Zga1}{matrix for the specification of constraints on the item discriminating indices for the 1st latent variable}  
+  \item{zga1}{vector for the specification of constraints on the item discriminating indices for the 1st latent variable}  
+  \item{Zga2}{matrix for the specification of constraints on the item discriminating indices for the 2nd latent variable}  
+  \item{zga2}{vector for the specification of constraints on the item discriminating indices for the 2nd latent variable}    
 }
 
 %\details{
@@ -48,13 +60,13 @@
 %}
 
 \value{
+\item{out.single}{output of each single model for each \code{k} in \code{kv1} and \code{kv2}; it is similar to output from est_multi_poly_within, with the addition of values of number of latent classes for the 1st latent variable (\code{k1}) and the 2nd latent variable (\code{k2}) and the sequence of log-likelihoods (\code{lktrace}) for the deterministic start, for each random start, and for the final estimation obtained with  a tolerance level equal to \code{tol2}}	
 \item{aicv}{Akaike Information Criterion index  for each  \code{k} in \code{kv1} and \code{kv2}}
 \item{bicv}{Bayesian Information Criterion index  for each \code{k}  in \code{kv1} and \code{kv2}}
 \item{entv}{Entropy index for each \code{k} in \code{kv1} and \code{kv2}}
-\item{errv}{trace of any errors occurred during the estimation process for each  \code{k}  in \code{kv1} and \code{kv2}}
-\item{lkv}{log-likelihood at convergence of the EM algorithm  for each  \code{k}  in \code{kv1} and \code{kv2}}
 \item{necv}{NEC index for each \code{k} in \code{kv1} and \code{kv2}}
-\item{out.single}{output of each single model for each \code{k} in \code{kv1} and \code{kv2}; it is similar to output from est_multi_poly_within, with the addition of values of number of latent classes for the 1st latent variable (\code{k1}) and the 2nd latent variable (\code{k2}) and the sequence of log-likelihoods (\code{lktrace}) for the deterministic start, for each random start, and for the final estimation obtained with  a tolerance level equal to \code{tol2}}
+\item{lkv}{log-likelihood at convergence of the EM algorithm  for each  \code{k}  in \code{kv1} and \code{kv2}}
+\item{errv}{trace of any errors occurred during the estimation process for each  \code{k}  in \code{kv1} and \code{kv2}}
 }
 
 \references{
@@ -84,7 +96,7 @@ S = SF12_nomiss[,1:12]
 X = SF12_nomiss[,13]
 
 # Partial credit model with two latent variables sharing six items 
-# (freedifficulty parameters and constrained discriminating parameters; 
+# (free difficulty parameters and constrained discriminating parameters; 
 # 1 to 3 latent classes for the 1st latent variable and 1 to 2 classes for the 2nd latent variable; 
 # one covariate):
 multi1 = c(1:5, 8:12)

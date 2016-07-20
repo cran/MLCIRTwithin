@@ -3,16 +3,16 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Compute observed log-likelihood and score}
 \description{Function used within \code{est_multi_poly_between} to compute observed log-likelihood and score.}
-\usage{lk_obs_score_between(par_comp, lde, lpar, lga, S, R, yv, k, rm, lv,
-                     J, fv, link, disc, indga, glob, refitem, miss,
-                     ltype, XXdis, Xlabel, ZZ0,fort)
+\usage{lk_obs_score_between(part_comp, lde, lpart, lgat, S, R, yv, k, rm, lv,
+                     J, fv, disc, glob, refitem, miss,
+                     ltype, XXdis, Xlabel, ZZ0,fort, Zpar, zpar, Zga, zga, items)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{par_comp}{complete vector of parameters}
+  \item{part_comp}{complete vector of parameters}
   \item{lde}{length of de}
-  \item{lpar}{length of par}
-  \item{lga}{length of ga}
+  \item{lpart}{length of part}
+  \item{lgat}{length of gat}
   \item{S}{matrix of responses}
   \item{R}{matrix of observed responses indicator}
   \item{yv}{vector of frequencies}
@@ -21,9 +21,7 @@
   \item{lv}{number of response categories for each item}
   \item{J}{number of items}
   \item{fv}{indicator of constrained parameters}
-  \item{link}{link function}
-  \item{disc}{presence of discrimination parameter}
-  \item{indga}{indicator of ga parameters}
+  \item{disc}{presence of discrimination parameters}
   \item{glob}{indicator of global parametrization for the covariates}
   \item{refitem}{vector of reference items}
   \item{miss}{indicator of presence of missing responses}
@@ -32,6 +30,11 @@
   \item{Xlabel}{indicator for covariate configuration}
   \item{ZZ0}{design matrix}
   \item{fort}{to use Fortran}
+  \item{Zpar}{array for the specification of constraints on the support points of the latent variable and for the item difficulty parameters}
+  \item{zpar}{vector for the specification of constraints on the support points of the latent variable and for the item difficulty parameters}
+  \item{Zga}{matrix for the specification of constraints on the item discriminating indices}
+  \item{zga}{vector for the specification of constraints on the item discriminating indices}
+  \item{items}{items affected by the latent variable}    
 }
 
 %\details{
