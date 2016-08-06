@@ -442,6 +442,7 @@ est_multi_poly_between <- function (S, yv = rep(1, ns), k, X = NULL, start = c("
 	dimnames(Th) = list(dimension = 1:rm,class=1:k)
 	Pp = ((1/pm) %o% rep(1, k)) * Piv * Psi
 	ent = -sum(V * log(pmax(Pp, 10^-100)))
+	dimnames(Phi) = list(category = 0:(lm - 1), item = 1:J, class = 1:k)
 	if (cov) {
 		if (glob) {
 			if (k == 1) De = NULL
@@ -462,8 +463,10 @@ est_multi_poly_between <- function (S, yv = rep(1, ns), k, X = NULL, start = c("
 			}
 		}
 		piv = drop(t(Piv)%*%yv/n)
-	}else de = De = log(piv[-1]/piv[1])
-	dimnames(Phi) = list(category = 0:(lm - 1), item = 1:J, class = 1:k)
+	}else{
+		de = log(piv[-1]/piv[1])
+		De = t(de); dimnames(De) = list("intercept",logit = 2:k)
+	}
 # compute standard errors
 	if (out_se) {
 		lde = length(de)

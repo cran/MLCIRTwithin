@@ -608,6 +608,7 @@ est_multi_poly_within <- function (S, yv = rep(1, ns), k1, k2, X = NULL,
 	Pp1 = Pp %*% t(Aggr1)
 	Pp2 = Pp %*% t(Aggr2)
 	ent = -sum(V * log(pmax(Pp, 10^-100)))
+	dimnames(Phi) = list(category = 0:(lm - 1), item = 1:J, class = 1:(k1*k2))
 	if (cov){
 		if (glob) {
 			if (k1 == 1) De1 = NULL
@@ -642,11 +643,11 @@ est_multi_poly_within <- function (S, yv = rep(1, ns), k1, k2, X = NULL,
 		}
 		piv1 = t(Piv1)%*%yv/n
 		piv2 = t(Piv2)%*%yv/n
-	}else De1 = De2 = NULL
-	dimnames(Phi) = list(category = 0:(lm - 1), item = 1:J, class = 1:(k1*k2))
-	if (!cov) {
-		de1 = De1 = log(piv1[-1]/piv1[1])
-		de2 = De2 = log(piv2[-1]/piv2[1])
+	}else{
+		de1 = log(piv1[-1]/piv1[1])
+		de2 = log(piv2[-1]/piv2[1])
+		De1 = t(de1); dimnames(De1) = list("intercept", logit = 2:k1)
+		De2 = t(de2); dimnames(De2) = list("intercept", logit = 2:k2)
 	}
 # compute standard errors    
 	if(out_se){
@@ -756,7 +757,10 @@ est_multi_poly_within <- function (S, yv = rep(1, ns), k1, k2, X = NULL,
 					dimnames(seDe2) = list(namesX, logit = 2:k2)
 				}
 			}
-        }else	seDe1 = seDe2 = NULL
+        }else{
+        	seDe1 = t(sede1); dimnames(seDe1) = list("intercept", logit = 2:k1)
+        	seDe2 = t(sede2); dimnames(seDe2) = list("intercept", logit = 2:k2)
+        }
 	}
 # order and standardize
 	mu1 = drop(Th1%*%piv1)

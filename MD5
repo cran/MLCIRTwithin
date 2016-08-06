@@ -1,13 +1,13 @@
-abd452061129d16dd9ab60f4f6e7acb0 *DESCRIPTION
+cec290a5fe4d5c2d21afcfe929d65416 *DESCRIPTION
 506a23a56c9acd967fa7761c3fd026ac *NAMESPACE
 0eae8d7cb8011c07ef9e1527e26fd20a *R/blkdiag.R
 384d0c9c301d42eb5395dbfa313e955c *R/coef.est_multi_poly_between.R
 e37c154ece2fafeb431e6dfd386f1098 *R/coef.est_multi_poly_within.R
-8cda6840f584187999330a40181079bc *R/confint.est_multi_poly_between.R
-b7ad1fb67dabf056433c70dcd307e2dc *R/confint.est_multi_poly_within.R
+7a372e7319e6535fb8a68e89515a5bfd *R/confint.est_multi_poly_between.R
+eae480555018dadb9101d71fca190d5d *R/confint.est_multi_poly_within.R
 44928f8731ed31e4c0d0667b5e29ef99 *R/est_multi_glob_genZ.R
-163f78196f7d3c7deab8730efa87e39c *R/est_multi_poly_between.R
-784021b9bbcb80a1ade82c25bf9413b2 *R/est_multi_poly_within.R
+167472cee06f863a67086797c12807b9 *R/est_multi_poly_between.R
+8ea312d3aa1287077b2414ceb41b4865 *R/est_multi_poly_within.R
 c3dab5210f9fa8e18d7a4aa82ff4c17b *R/lk_obs_score_between.R
 e36d65179b5798be17c5283e79d718f1 *R/lk_obs_score_within.R
 2799eb9ada9287b09c02c0fcf55b2ffd *R/logLik.est_multi_poly_between.R
@@ -24,7 +24,7 @@ e8801dd8c53472c01f4bc79949daf8a0 *R/vcov.est_multi_poly_between.R
 6c45af9bddfb27463b27162ec83408e2 *data/RLMS.RData
 3a2d5a30d6949a0142c1059effbec91c *data/SF12.RData
 9b74928050cc1dd162af0e3c4de4a745 *data/SF12_nomiss.RData
-73a6f8a41d8f209be2856c11329278ac *man/MLCIRTwithin-package.Rd
+64b7f1d55418b6b5e373951cf9997758 *man/MLCIRTwithin-package.Rd
 d818e399414411e1c9f6b7a866df40eb *man/RLMS.Rd
 1b2176546da9497e4648029e966d599f *man/SF12.Rd
 ac2bc0c352e9d77d17c99a4e9415344f *man/SF12_nomiss.Rd
