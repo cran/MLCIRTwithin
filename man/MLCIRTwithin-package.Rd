@@ -16,8 +16,8 @@ Every level of the abilities identify a latent class of subjects. The fitting al
 \tabular{ll}{
 Package: \tab MultiLCIRT\cr
 Type: \tab Package\cr
-Version: \tab 2.1\cr
-Date: \tab 2016-08-04\cr
+Version: \tab 2.1.1\cr
+Date: \tab 2019-09-30\cr
 License: \tab GPL (>= 2)\cr
 }
 Function \code{est_multi_poly_within} performs the parameter estimation of the same model considered in the \code{R} package \code{MultiLCIRT} when one or more items are shared by two latent traits (within-item multidimensionality); in addition, fixed values and constraints on support points and item parameters are allowed.

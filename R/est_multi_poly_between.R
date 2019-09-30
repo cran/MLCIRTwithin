@@ -44,8 +44,8 @@ est_multi_poly_between <- function (S, yv = rep(1, ns), k, X = NULL, start = c("
     }else logit_cov = "m" 
 # adjust S for missing data
     miss = any(is.na(S))
-    ns = nrow(S)
-    if (miss) {
+	ns = nrow(S)
+	if(miss) {
         cat("Missing data in the dataset, units and items without responses are removed\n")
         ind = which(apply(is.na(S), 1, all))
         if (length(ind) > 0) {
@@ -127,7 +127,7 @@ est_multi_poly_between <- function (S, yv = rep(1, ns), k, X = NULL, start = c("
 		if(is.null(indth)) tmp = 0
 		else tmp = max(indth)
 		if(difl) indbet = tmp+(1:(J-rm+lm-2))
-		else indbet = tmp+(1:(sum(lv - 1))-rm)
+		else indbet = tmp+1:(sum(lv - 1)-rm)  #FB
     }
     indbe = k*rm + (1:sum(lv - 1))          # index of be in par
     abils = rep(0, J)
@@ -353,7 +353,8 @@ est_multi_poly_between <- function (S, yv = rep(1, ns), k, X = NULL, start = c("
 					for(j in 1:rm){
 						tmp = gac[multi[j,1]]
 						gac[multi[j,]] = gac[multi[j,]]/tmp
-						ind = (j-1)*rm+seq(j,k*rm,rm)
+						# ind = (j-1)*rm+seq(j,k*rm,rm)  # FB
+						ind = seq(j,k*rm,rm)
 						part[ind] = part[ind]*tmp
 					}
 					ga = gac[items]; gat = gac[indgat]
